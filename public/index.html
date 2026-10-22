@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>TABY · Real-Time Early Active Stress Prevention Companion</title>
+  <link rel="stylesheet" href="/css/taby.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Host Control Bar (Preview & Testing Assistant) -->
+  <header class="app-host-bar">
+    <div class="host-brand">
+      <span class="dot"></span>
+      <span>SOVEREIGNTY LAB · TABY</span>
+      <span class="tag-chip" style="font-size:10px; padding:2px 8px; color:var(--teal); border-color:var(--teal);">Qwen LLM Companion</span>
+    </div>
+    <div class="host-controls">
+      <select id="host-screen-select" class="host-btn" style="padding:4px 8px;">
+        <option value="screen-1">Screen 1: Demographics</option>
+        <option value="screen-2">Screen 2: Terms</option>
+        <option value="screen-3">Screen 3: Biometrics</option>
+        <option value="screen-4" selected>Screen 4: Dashboard</option>
+        <option value="screen-5">Screen 5: TABY Chat</option>
+        <option value="screen-6">Screen 6: Insights</option>
+        <option value="screen-7">Screen 7: History Graph</option>
+        <option value="screen-8">Screen 8: Library</option>
+        <option value="screen-9">Screen 9: Profile</option>
+      </select>
+      <button class="host-btn" id="host-view-toggle">Full Screen</button>
+    </div>
+  </header>
+
+  <!-- Mobile Phone Device Frame (390 x 844 px) -->
+  <main class="phone-frame" id="phone-frame">
+    <div class="phone-notch">
+      <div class="notch-camera"></div>
+    </div>
+
+    <div class="screen-viewport" id="screen-viewport">
+
+      <!-- ===================================================================
+           SCREEN 1: Demographics & Authentication
+           =================================================================== -->
+      <section class="screen-view" id="screen-1">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+          <div style="font-size:12px; font-weight:600; color:var(--muted); display:flex; align-items:center; gap:6px;">
+            <span style="width:6px; height:6px; border-radius:50%; background:var(--teal);"></span>
+            SOVEREIGNTY LAB
+          </div>
+          <span class="tag-chip">Preview</span>
+        </div>
+
+        <div class="kicker-label" style="color:var(--teal);">REAL-TIME EARLY ACTIVE PREVENTION</div>
+        <h1 class="screen-title" style="margin-bottom:6px;">Meet TABY, your calm companion.</h1>
+        <p class="small-muted" style="margin-bottom:20px;">
+          Set up your private emotional baseline. Your biometrics never leave your control.
+        </p>
+
+        <div class="form-group">
+          <label class="form-label" for="s1-name">First Name</label>
+          <input type="text" id="s1-name" class="text-input" placeholder="e.g. Alex" value="Alex" maxlength="30" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="s1-email">Email Address</label>
+          <input type="email" id="s1-email" class="text-input" placeholder="alex@sovereigntylab.com" value="alex@sovereigntylab.com" />
+          <div class="form-error" id="s1-email-error" style="display:none;">Please enter a valid email.</div>
+        </div>
+
+        <div class="form-group" style="margin-top:16px;">
+          <label class="form-label">Gender Identity</label>
+          <div class="chips-row" id="s1-gender-chips">
+            <button class="select-chip selected" data-value="Female">Female</button>
+            <button class="select-chip" data-value="Male">Male</button>
+            <button class="select-chip" data-value="Rather not say">Rather not say</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Age Range</label>
+          <div class="chips-row" id="s1-age-chips">
+            <button class="select-chip" data-value="18–24">18–24</button>
+            <button class="select-chip selected" data-value="25–34">25–34</button>
+            <button class="select-chip" data-value="35–45">35–45</button>
+            <button class="select-chip" data-value="Above 45">Above 45</button>
+          </div>
+        </div>
+
+        <div style="margin-top:28px;">
+          <button class="primary-pill-btn" id="s1-continue-btn">CONTINUE</button>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           SCREEN 2: Terms & Conditions
+           =================================================================== -->
+      <section class="screen-view" id="screen-2">
+        <div class="screen-header-bar">
+          <button class="header-back-btn" id="s2-back-btn" aria-label="Back">‹</button>
+          <span class="header-title-text">Onboarding</span>
+          <div style="width:40px;"></div>
+        </div>
+
+        <div class="kicker-label" style="color:var(--teal);">DATA SOVEREIGNTY</div>
+        <h1 class="screen-title" style="margin-bottom:12px;">Privacy & Trust Terms</h1>
+
+        <div class="card" style="max-height: 240px; overflow-y: auto; padding: 14px; margin-bottom: 18px; font-size: 12.5px; line-height: 1.6; color: var(--text);">
+          <p style="margin-bottom:10px;"><strong>Sovereign Mind Data Pledge:</strong></p>
+          <p style="margin-bottom:8px;">
+            1. <strong>Local Edge Sovereign Storage:</strong> Your reflections, chats, and emotional history remain encrypted directly inside your device's browser memory.
+          </p>
+          <p style="margin-bottom:8px;">
+            2. <strong>Zero Keystroke Logging:</strong> Only temporal cadence (intervals between keystrokes and correction ratios) is processed. Which keys you press or what you type is never read or transmitted.
+          </p>
+          <p style="margin-bottom:8px;">
+            3. <strong>Ephemeral Companion Telemetry:</strong> When you converse with TABY, prompts are securely handled via modern Qwen LLM infrastructure with strict evidence-based stress-relief safety boundaries.
+          </p>
+          <p>
+            4. <strong>Full Deletion Sovereignty:</strong> You can wipe all profile history, baseline models, and cached conversations in 1-click at any time.
+          </p>
+        </div>
+
+        <div class="card" style="padding:14px; margin-bottom:20px;">
+          <label style="display:flex; align-items:flex-start; gap:10px; margin-bottom:12px; cursor:pointer; font-size:13px;">
+            <input type="checkbox" id="s2-chk-keyboard" checked style="accent-color:var(--teal); margin-top:3px; transform:scale(1.15);" />
+            <span>I consent to keyboard rhythm cadence analysis to detect acute tension in my typing pacing.</span>
+          </label>
+          <label style="display:flex; align-items:flex-start; gap:10px; cursor:pointer; font-size:13px;">
+            <input type="checkbox" id="s2-chk-voice" checked style="accent-color:var(--teal); margin-top:3px; transform:scale(1.15);" />
+            <span>I consent to acoustic voice prosody analysis for non-verbal stress estimation.</span>
+          </label>
+        </div>
+
+        <button class="primary-pill-btn" id="s2-agree-btn">I HAVE READ AND AGREE</button>
+      </section>
+
+
+      <!-- ===================================================================
+           SCREEN 3: Define Biometrics
+           =================================================================== -->
+      <section class="screen-view" id="screen-3">
+        <div class="screen-header-bar">
+          <button class="header-back-btn" id="s3-back-btn" aria-label="Back">‹</button>
+          <span class="header-title-text">Sensors & Consent</span>
+          <div style="width:40px;"></div>
+        </div>
+
+        <div class="kicker-label" style="color:var(--teal);">CALIBRATION</div>
+        <h1 class="screen-title" style="margin-bottom:6px;">Define Biometrics</h1>
+        <p class="small-muted" style="margin-bottom:16px;">
+          Choose which signals feed your live stress detection engine:
+        </p>
+
+        <div class="card">
+          <div class="switch-wrapper">
+            <div>
+              <div style="font-weight:600; font-size:13.5px;">Keyboard Rhythm Phenotyping</div>
+              <div class="small-muted">Measures cadence variability & pause frequency</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="s3-sw-keyboard" checked />
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="switch-wrapper">
+            <div>
+              <div style="font-weight:600; font-size:13.5px;">Voice Tone & Emotion Analysis</div>
+              <div class="small-muted">Evaluates micro-tremors in spoken acoustic tone</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="s3-sw-voice" checked />
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="card disabled-sensor-card" style="opacity:0.55; cursor:pointer;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-weight:600; font-size:13px;">Facial Expression Geometry</div>
+              <div class="small-muted">Micro-expression mapping</div>
+            </div>
+            <span class="tag-chip">Coming soon</span>
+          </div>
+        </div>
+
+        <div class="card disabled-sensor-card" style="opacity:0.55; cursor:pointer;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-weight:600; font-size:13px;">Physiological Sensors (HRV)</div>
+              <div class="small-muted">Bluetooth low-energy chest/watch sensor</div>
+            </div>
+            <span class="tag-chip">Coming soon</span>
+          </div>
+        </div>
+
+        <div class="card disabled-sensor-card" style="opacity:0.55; cursor:pointer;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-weight:600; font-size:13px;">Location Context Engine</div>
+              <div class="small-muted">Ambient situational environmental cues</div>
+            </div>
+            <span class="tag-chip">Coming soon</span>
+          </div>
+        </div>
+
+        <div class="small-muted" id="s3-note-text" style="display:none; margin:10px 0; text-align:center;">
+          You can turn these on anytime in Profile.
+        </div>
+
+        <div style="margin-top:20px;">
+          <button class="primary-pill-btn" id="s3-finish-btn">FINISH SETUP</button>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           SCREEN 4: Master Emotional Command Dashboard
+           =================================================================== -->
+      <section class="screen-view" id="screen-4">
+        <!-- Top bar -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <div style="display:flex; align-items:center; gap:6px; font-size:11px; font-weight:700; letter-spacing:0.08em; color:var(--teal);">
+            <span style="width:7px; height:7px; border-radius:50%; background:var(--teal); box-shadow:0 0 8px var(--teal);"></span>
+            ACTIVE PREVENTION
+          </div>
+          <button class="chat-icon-btn" id="dash-avatar-btn" aria-label="Profile" style="background:var(--panel); border:1px solid var(--border); font-size:12px; font-weight:700; color:var(--teal);">
+            <span class="user-avatar-initials">AL</span>
+          </button>
+        </div>
+
+        <h1 class="screen-title" style="font-size:24px; margin-bottom:14px;">
+          Hello, <span class="user-first-name">Alex</span>.
+        </h1>
+
+        <!-- Live interactive Taby Blob Companion -->
+        <div class="card" style="padding:10px; margin-bottom:14px; text-align:center; background: radial-gradient(circle at center, #162029 0%, #12181F 100%);">
+          <div class="blob-canvas-wrapper" style="height:150px;">
+            <canvas id="blob-canvas-dash" class="blob-canvas"></canvas>
+            <div class="blob-mood-pill">TABY · CALM COMPANION</div>
+          </div>
+          <div class="small-muted" style="margin-top:2px;">Tap TABY to interact · Shape shifts to your state</div>
+        </div>
+
+        <!-- Current Capacity Gauge Card -->
+        <div class="card interactive capacity-card" id="dash-capacity-card" style="cursor:pointer;">
+          <div class="capacity-gauge-wrap">
+            <svg class="capacity-svg" viewBox="0 0 120 120">
+              <circle class="capacity-circle-bg" cx="60" cy="60" r="48"></circle>
+              <circle class="capacity-circle-bar" id="dash-capacity-bar" cx="60" cy="60" r="48" style="stroke-dasharray: 301.59; stroke-dashoffset: 54.28;"></circle>
+            </svg>
+            <div class="capacity-gauge-val" id="dash-capacity-val">82%</div>
+          </div>
+          <h2 class="serif-title" style="font-size:18px; margin: 4px 0;">Current Capacity</h2>
+          <p class="small-muted" style="margin-bottom:8px;">Everything is in flow. Stay grounded.</p>
+          <a class="small-muted" id="dash-view-insights" style="color:var(--teal); text-decoration:none; font-weight:600; cursor:pointer;">
+            View insights ›
+          </a>
+        </div>
+
+        <!-- 3 Pillars Quick Actions: Connect, Regulate, Purpose -->
+        <div style="display:flex; justify-content:space-between; gap:8px; margin-bottom:14px;">
+          <button class="secondary-outline-btn select-chip" id="dash-pill-connect" style="flex:1; border-color:rgba(179,111,195,0.4); color:var(--orchid);">
+            Connect
+          </button>
+          <button class="secondary-outline-btn select-chip" id="dash-pill-regulate" style="flex:1; border-color:rgba(127,217,168,0.4); color:var(--sage);">
+            Regulate
+          </button>
+          <button class="secondary-outline-btn select-chip" id="dash-pill-purpose" style="flex:1; border-color:rgba(242,166,90,0.4); color:var(--amber);">
+            Purpose
+          </button>
+        </div>
+
+        <!-- Proactive TABY Card -->
+        <div class="card interactive" id="dash-taby-card" style="border-left: 4px solid var(--teal); cursor:pointer;">
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+            <span style="font-weight:700; color:var(--teal); font-size:13px;">TABY GUIDANCE</span>
+            <span class="tag-chip sage-tint" style="font-size:10px;">Just-in-Time</span>
+          </div>
+          <p id="dash-taby-card-text" style="font-size:13.5px; line-height:1.5; color:var(--text); margin-bottom:12px;">
+            I noticed your back-to-back meetings are spiking your stress. Shall we try a 6-second recalibration pulse?
+          </p>
+          <button class="primary-pill-btn" id="dash-recal-btn" style="padding:10px 16px; font-size:12.5px;">
+            Yes, Recalibrate
+          </button>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           SCREEN 5: TABY Interactive Chat
+           =================================================================== -->
+      <section class="screen-view" id="screen-5">
+        <div class="screen-header-bar" style="border-bottom:1px solid var(--border-subtle); padding-bottom:10px;">
+          <button class="header-back-btn" id="s5-back-btn" aria-label="Back">‹</button>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <div style="width:9px; height:9px; border-radius:50%; background:var(--teal); box-shadow:0 0 8px var(--teal);"></div>
+            <span class="header-title-text" style="font-size:15px;">TABY Guidance</span>
+            <span class="small-muted" style="font-size:11px;">● Online</span>
+          </div>
+          <div style="width:40px;"></div>
+        </div>
+
+        <!-- Ambient companion blob at top of chat -->
+        <div style="height:100px; margin: 4px 0 10px; display:flex; align-items:center; justify-content:center;">
+          <canvas id="blob-canvas-chat" style="width:100%; height:100%; max-width:240px;"></canvas>
+        </div>
+
+        <!-- Messages history -->
+        <div class="chat-messages-container" id="s5-chat-messages">
+          <!-- Populated dynamically via TabyApp -->
+        </div>
+
+        <!-- Input Area -->
+        <div class="chat-input-bar">
+          <input type="text" id="s5-chat-input" placeholder="Message TABY... (e.g. I feel stressed)" autocomplete="off" />
+          <button class="chat-icon-btn disabled" id="s5-mic-btn" title="Voice Input (Speech-to-text)">🎙</button>
+          <button class="chat-send-btn" id="s5-send-btn" aria-label="Send">›</button>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           SCREEN 6: Emotional Insights
+           =================================================================== -->
+      <section class="screen-view" id="screen-6">
+        <div class="screen-header-bar">
+          <button class="header-back-btn" id="s6-back-btn" aria-label="Back">‹</button>
+          <span class="header-title-text">Emotional Insights</span>
+          <button class="secondary-outline-btn select-chip" id="s6-hist-top-btn" style="padding:4px 10px; font-size:11.5px; border-color:var(--border);">
+            History ›
+          </button>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <h1 class="screen-title" style="margin:0; font-size:20px;">Your Emotional Baseline</h1>
+          <span class="small-muted" style="font-size:11px;" id="s6-last-updated">Today 08:00</span>
+        </div>
+
+        <!-- Interactive Donut Card -->
+        <div class="card" style="text-align:center; padding:18px;">
+          <div class="donut-wrap">
+            <svg id="s6-donut-svg" viewBox="0 0 170 170" style="transform: rotate(-90deg); width:100%; height:100%;"></svg>
+            <div id="s6-donut-center" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:100px; text-align:center; pointer-events:none;">
+              <div style="font-size:18px; font-weight:700;">80%</div>
+              <div class="small-muted" style="font-size:10px;">Regulated Zone</div>
+            </div>
+          </div>
+
+          <div class="donut-legend">
+            <div class="donut-legend-item"><span class="donut-dot" style="background:#4AC9C0;"></span> Joy 45%</div>
+            <div class="donut-legend-item"><span class="donut-dot" style="background:#7FD9A8;"></span> Calm 35%</div>
+            <div class="donut-legend-item"><span class="donut-dot" style="background:#F2A65A;"></span> Stress 15%</div>
+            <div class="donut-legend-item"><span class="donut-dot" style="background:#B36FC3;"></span> Anger 5%</div>
+          </div>
+        </div>
+
+        <!-- 3-Day Balance Streak -->
+        <div class="card" style="display:flex; align-items:center; gap:12px; padding:12px 16px; border:1px solid rgba(127,217,168,0.3); background:rgba(127,217,168,0.06);">
+          <span style="font-size:20px;">🌱</span>
+          <div>
+            <div style="font-weight:600; font-size:13px; color:var(--sage);">3-Day Balance Streak Achieved</div>
+            <div class="small-muted">Consistently staying inside regulated zone for 3 days</div>
+          </div>
+        </div>
+
+        <!-- Update My Data Now button -->
+        <button class="secondary-outline-btn" id="s6-update-data-btn" style="margin-bottom:14px; border-color:var(--teal); color:var(--teal);">
+          ♡ UPDATE MY DATA NOW
+        </button>
+
+        <!-- Proactive Pause Recommendation -->
+        <div class="card" id="s6-proactive-card" style="border-left:4px solid var(--sage);">
+          <div class="kicker-label" style="color:var(--sage);">TABY PATTERN DISCOVERY</div>
+          <p style="font-size:13px; margin: 4px 0 10px; line-height:1.5;">
+            Your calm moments cluster in the mornings. Want a 60-second breathing pause before your first meeting?
+          </p>
+          <div style="display:flex; gap:8px;">
+            <button class="primary-pill-btn" id="s6-yes-sched" style="flex:1; padding:8px 12px; font-size:12px;">Yes, schedule it</button>
+            <button class="secondary-outline-btn" id="s6-not-now" style="flex:1; padding:8px 12px; font-size:12px;">Not now</button>
+          </div>
+        </div>
+
+        <!-- Go To History Button -->
+        <button class="primary-pill-btn" id="s6-go-hist-btn" style="margin-top:10px;">
+          GO TO HISTORY →
+        </button>
+      </section>
+
+
+      <!-- ===================================================================
+           SCREEN 7: Historical Fusion Analytics
+           =================================================================== -->
+      <section class="screen-view" id="screen-7">
+        <div class="screen-header-bar">
+          <button class="header-back-btn" id="s7-back-btn" aria-label="Back">‹</button>
+          <span class="header-title-text">Historical Sovereignty</span>
+          <div style="width:40px;"></div>
+        </div>
+
+        <h1 class="screen-title" style="font-size:20px; margin-bottom:12px;">Sovereignty Journey</h1>
+
+        <!-- Range toggle: 24 Hours | 7 Days -->
+        <div style="display:flex; background:var(--panel); border-radius:var(--radius-pill); padding:3px; margin-bottom:16px;">
+          <button class="select-chip selected" id="s7-tab-24h" style="flex:1; text-align:center; padding:6px 0; font-size:12px; border:none;">24 Hours</button>
+          <button class="select-chip" id="s7-tab-7d" style="flex:1; text-align:center; padding:6px 0; font-size:12px; border:none;">7 Days</button>
+        </div>
+
+        <!-- Multi-line SVG chart container with scrubber -->
+        <div class="analytics-chart-wrap" id="s7-chart-wrap">
+          <svg class="chart-svg" id="s7-chart-svg" viewBox="0 0 310 160"></svg>
+          <div class="chart-tooltip" id="s7-tooltip"></div>
+        </div>
+
+        <!-- Legend -->
+        <div class="card" style="padding:10px 14px; font-size:11.5px; display:flex; flex-direction:column; gap:6px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="width:14px; height:3px; background:var(--teal);"></span>
+            <span>Typing Speed (WPM)</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="width:14px; height:3px; background:var(--orchid);"></span>
+            <span>Voice Stress (Prosody)</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="width:14px; height:3px; background:#FFFFFF;"></span>
+            <span>Fused Index (Overall Activation)</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px; color:var(--indigo);">
+            <span style="width:14px; height:2px; border-bottom:2px dashed var(--indigo);"></span>
+            <span>[D] DEXTER JITAI Interventions (Tap badge to view)</span>
+          </div>
+        </div>
+
+        <button class="secondary-outline-btn" id="s7-back-dash-btn" style="margin-top:14px;">
+          BACK TO DASHBOARD
+        </button>
+      </section>
+
+
+      <!-- ===================================================================
+           SCREEN 8: TABY Library
+           =================================================================== -->
+      <section class="screen-view" id="screen-8">
+        <h1 class="screen-title" style="margin-top:6px; margin-bottom:12px;">TABY Library</h1>
+
+        <!-- 3 Module Cards -->
+        <div class="kicker-label" style="color:var(--teal);">SPECIALIZED REGULATION MODULES</div>
+        <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
+          <div class="card interactive" id="lib-mod-parasympathetic" style="cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-weight:600; font-size:14px;">Parasympathetic Co-regulation</div>
+              <div class="small-muted">60-second synchronized respiratory reset</div>
+            </div>
+            <span style="color:var(--teal); font-size:18px;">›</span>
+          </div>
+
+          <div class="card interactive" id="lib-mod-recalibration" style="cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-weight:600; font-size:14px;">Agitated Overload Recalibration</div>
+              <div class="small-muted">6-second quick recalibration pulse</div>
+            </div>
+            <span style="color:var(--teal); font-size:18px;">›</span>
+          </div>
+
+          <div class="card interactive" id="lib-mod-offpeak" style="cursor:pointer; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-weight:600; font-size:14px;">Off-Peak Skill Building</div>
+              <div class="small-muted">Rehearse boundaries & cognitive reframing</div>
+            </div>
+            <span style="color:var(--teal); font-size:18px;">›</span>
+          </div>
+        </div>
+
+        <!-- The 6 Pillars -->
+        <div class="kicker-label" style="color:var(--teal);">THE 6 CORE PILLARS</div>
+        <div id="lib-pillars-list" style="margin-bottom:24px;">
+          <!-- Populated dynamically via TabyApp -->
+        </div>
+
+        <!-- Accomplishment History -->
+        <div class="kicker-label" style="color:var(--teal);">ACCOMPLISHMENT HISTORY</div>
+        <div id="lib-history-list">
+          <!-- Populated dynamically -->
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           SCREEN PILLAR: 3-Step Interactive Pillar Flow (Learn, Practice, Reflect)
+           =================================================================== -->
+      <section class="screen-view" id="screen-pillar">
+        <div class="screen-header-bar">
+          <button class="header-back-btn" id="pillar-back-btn" aria-label="Back">‹</button>
+          <!-- 3 Segment Progress Bar -->
+          <div style="display:flex; align-items:center; gap:6px; flex:1; max-width:180px; margin:0 10px;">
+            <div id="pillar-step-bar-1" style="flex:1; height:4px; border-radius:2px; background:var(--teal);"></div>
+            <div id="pillar-step-bar-2" style="flex:1; height:4px; border-radius:2px; background:var(--panel);"></div>
+            <div id="pillar-step-bar-3" style="flex:1; height:4px; border-radius:2px; background:var(--panel);"></div>
+          </div>
+          <span class="small-muted" id="pillar-step-counter" style="font-size:12px; font-weight:600;">1/3</span>
+          <button class="header-close-btn" id="pillar-close-btn" aria-label="Close">✕</button>
+        </div>
+
+        <!-- Ambient blob in pillar practice -->
+        <div style="height:90px; margin: 4px 0 10px; display:flex; align-items:center; justify-content:center;">
+          <canvas id="blob-canvas-pillar" style="width:100%; height:100%; max-width:200px;"></canvas>
+        </div>
+
+        <!-- Step 1: Learn -->
+        <div id="pillar-step-1" style="display:none;">
+          <div class="kicker-label" id="p1-kicker" style="color:var(--teal);">PILLAR 1 · LEARN</div>
+          <h1 class="screen-title" id="p1-title" style="margin-bottom:12px;">Identity & Outdated Scripts</h1>
+          <div class="card" id="p1-body" style="font-size:13.5px; line-height:1.6; color:var(--text); margin-bottom:16px;"></div>
+
+          <div class="card interactive" id="p1-taby-card" style="cursor:pointer; display:flex; align-items:center; gap:12px;">
+            <span style="font-size:22px;">💬</span>
+            <div>
+              <div style="font-weight:600; font-size:13px;">Questions while you read?</div>
+              <div class="small-muted">Tap TABY anytime for clarification.</div>
+            </div>
+          </div>
+
+          <div style="margin-top:20px;">
+            <button class="primary-pill-btn" id="p1-practice-btn">PRACTICE WITH TABY</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Practice with TABY -->
+        <div id="pillar-step-2" style="display:none;">
+          <h2 class="serif-title" id="p2-title" style="margin-bottom:10px;">Practice with TABY</h2>
+          <div class="chat-messages-container" id="p2-chat-box" style="min-height:220px; max-height:280px; overflow-y:auto; margin-bottom:10px;"></div>
+
+          <div class="chat-input-bar" style="margin-bottom:12px;">
+            <input type="text" id="p2-input" placeholder="Reply to TABY..." />
+            <button class="chat-send-btn" id="p2-send-btn">›</button>
+          </div>
+
+          <button class="secondary-outline-btn" id="p2-to-reflect-btn">
+            CONTINUE TO REFLECT →
+          </button>
+        </div>
+
+        <!-- Step 3: Reflect -->
+        <div id="pillar-step-3" style="display:none;">
+          <div class="kicker-label" style="color:var(--teal);">STEP 3 · REFLECT</div>
+          <h2 class="serif-title" id="p3-question" style="margin-bottom:12px; font-size:18px;">How have your experiences shaped who you are today?</h2>
+
+          <textarea class="text-input" id="p3-journal" rows="6" placeholder="Write your private reflection here..." style="margin-bottom:10px;"></textarea>
+
+          <div style="display:flex; align-items:center; gap:8px; color:var(--sage); font-size:12px; margin-bottom:14px;">
+            <span>🔒</span>
+            <span>Only you can see your reflections. Saved on-device.</span>
+          </div>
+
+          <div class="card interactive" id="p3-taby-bar" style="padding:10px 14px; cursor:pointer; margin-bottom:16px;">
+            <div class="small-muted">Need help finding words? Tap TABY.</div>
+          </div>
+
+          <button class="primary-pill-btn disabled" id="p3-finish-btn" disabled>
+            FINISH PILLAR
+          </button>
+        </div>
+
+        <!-- Completion View -->
+        <div id="pillar-completion" style="display:none; text-align:center; padding:20px 0;">
+          <div class="check-circle-wrapper" style="margin:0 auto 16px;">
+            <svg class="check-icon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="var(--sage)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
+          <h1 class="serif-title" style="font-size:24px; margin-bottom:4px;">Well done.</h1>
+          <div class="small-muted" id="p-comp-sub" style="font-size:14px; margin-bottom:20px;">Pillar completed</div>
+
+          <div style="display:flex; justify-content:center; gap:8px; margin-bottom:24px;">
+            <span class="tag-chip sage-tint">3 of 3 steps</span>
+            <span class="tag-chip sage-tint">Reflection saved</span>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="primary-pill-btn" id="p-comp-lib-btn">BACK TO LIBRARY</button>
+            <button class="secondary-outline-btn" id="p-comp-chat-btn">BACK TO TABY</button>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           SCREEN 9: Profile, Settings & Sovereignty Management
+           =================================================================== -->
+      <section class="screen-view" id="screen-9">
+        <h1 class="screen-title" style="margin-top:6px; margin-bottom:14px;">Profile & Sovereignty</h1>
+
+        <!-- Identity Card -->
+        <div class="card" style="display:flex; align-items:center; gap:14px; padding:18px;">
+          <div style="width:52px; height:52px; border-radius:50%; background:var(--panel); border:2px solid var(--teal); display:flex; align-items:center; justify-content:center; font-weight:700; color:var(--teal); font-size:18px;">
+            <span class="user-avatar-initials">AL</span>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:16px; font-weight:600;" id="s9-profile-name">Alex</div>
+            <div class="small-muted" style="font-size:12px;" id="s9-profile-email">alex@example.com</div>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px; margin-bottom:18px;">
+          <button class="secondary-outline-btn select-chip" id="s9-edit-profile-btn" style="flex:1;">Edit Profile</button>
+          <button class="secondary-outline-btn select-chip" id="s9-manage-sub-btn" style="flex:1;">Manage Plan</button>
+        </div>
+
+        <!-- Interface Theme Toggle -->
+        <div class="card">
+          <div class="switch-wrapper">
+            <div>
+              <div style="font-weight:600; font-size:13.5px;">Light / Dark Theme</div>
+              <div class="small-muted">Toggle interface presentation</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="s9-theme-toggle" />
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Biometric Consents Switches -->
+        <div class="kicker-label" style="color:var(--teal); margin-top:16px;">BIOMETRIC CONSENTS</div>
+        <div class="card">
+          <div class="switch-wrapper" style="border-bottom:1px solid var(--border-subtle); padding-bottom:12px; margin-bottom:12px;">
+            <div>
+              <div style="font-weight:600; font-size:13px;">Keyboard Cadence Sensor</div>
+              <div class="small-muted">Detects typing rush & pause intervals</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="s9-sw-keyboard" checked />
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+          <div class="switch-wrapper">
+            <div>
+              <div style="font-weight:600; font-size:13px;">Voice Acoustic Tone</div>
+              <div class="small-muted">Analyzes vocal prosody during exercises</div>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="s9-sw-voice" checked />
+              <span class="switch-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Delete All My Data -->
+        <div style="margin-top:24px;">
+          <button class="secondary-outline-btn" id="s9-delete-all-btn" style="border-color:var(--amber); color:var(--amber);">
+            DELETE ALL MY DATA
+          </button>
+        </div>
+      </section>
+
+    </div><!-- /screen-viewport -->
+
+    <!-- Persistent Bottom Navigation Bar (Section 1.5) -->
+    <nav class="bottom-nav-bar" id="bottom-nav">
+      <button class="nav-item active" id="nav-dashboard">
+        <span class="nav-icon">⊞</span>
+        <span>Dashboard</span>
+      </button>
+      <button class="nav-item" id="nav-chat">
+        <span class="nav-icon">💬</span>
+        <span>TABY Chat</span>
+      </button>
+      <button class="nav-item" id="nav-library">
+        <span class="nav-icon">📚</span>
+        <span>Library</span>
+      </button>
+      <button class="nav-item" id="nav-profile">
+        <span class="nav-icon">👤</span>
+        <span>Profile</span>
+      </button>
+    </nav>
+
+    <!-- Overlay & Bottom Sheet Backdrop (Section 1.2) -->
+    <div class="overlay-backdrop" id="overlay-backdrop">
+      <div id="overlay-container"></div>
+    </div>
+
+    <!-- Toast Notifications Container (Section 1.3) -->
+    <div class="toast-container" id="toast-container"></div>
+  </main>
+
+  <!-- Application Scripts -->
+  <script src="/js/taby-blob.js"></script>
+  <script src="/js/state.js"></script>
+  <script src="/js/ui-popups.js"></script>
+  <script src="/js/qwen-client.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>

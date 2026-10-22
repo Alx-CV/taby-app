@@ -1,0 +1,28 @@
+{
+  "name": "taby-stress-relief-app",
+  "version": "1.0.0",
+  "description": "Interactive stress-relief web application with amorphous blob companion TABY and Qwen LLM integration",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "py": "uv run python server.py"
+  },
+  "keywords": [
+    "stress-relief",
+    "wellbeing",
+    "qwen",
+    "llm",
+    "taby",
+    "animation",
+    "biofeedback"
+  ],
+  "author": "Sovereignty Lab",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  }
+}
