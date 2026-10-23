@@ -162,8 +162,92 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+/**
+ * Normalize role to strictly 'system', 'user', or 'assistant'
+ */
+function normalizeRole(role, sender) {
+  const r = String(role || sender || '').toLowerCase().trim();
+  if (r === 'user') return 'user';
+  if (r === 'assistant' || r === 'taby' || r === 'model' || r === 'bot') return 'assistant';
+  if (r === 'system') return 'system';
+  return null;
+}
+
+/**
+ * Extract clean string content from a turn object
+ */
+function normalizeContent(item) {
+  if (!item || typeof item !== 'object') return '';
+  const content = item.content !== undefined ? item.content : item.text;
+  if (content === null || content === undefined) return '';
+  return String(content).trim();
+}
+
+/**
+ * Build strictly OpenAI-compatible messages array:
+ * [ { role: 'system', content: '...' }, { role: 'user' | 'assistant', content: '...' }, ..., { role: 'user', content: '...' } ]
+ */
+function buildOpenAiMessages(systemPrompt, history, userPrompt, rawMessage) {
+  const messages = [];
+
+  // 1. System prompt (always index 0)
+  if (systemPrompt) {
+    messages.push({
+      role: 'system',
+      content: String(systemPrompt).trim()
+    });
+  }
+
+  // 2. Add history turns, ensuring each item has valid 'role' and non-empty 'content'
+  if (Array.isArray(history)) {
+    const validHistory = [];
+    for (const item of history) {
+      if (!item || typeof item !== 'object') continue;
+
+      const role = normalizeRole(item.role, item.sender);
+      if (!role) continue; // Skip non-dialogue / UI items without valid role
+      if (role === 'system') continue; // Avoid duplicate system instructions
+
+      const content = normalizeContent(item);
+      if (!content) continue; // Skip items with no text
+
+      validHistory.push({ role, content });
+    }
+
+    // If the last history turn already matches the incoming user message,
+    // deduplicate so we don't send the user message twice in a row
+    const rawTrimmed = String(rawMessage || '').trim();
+    const promptTrimmed = String(userPrompt || '').trim();
+    if (validHistory.length > 0 && (rawTrimmed || promptTrimmed)) {
+      const last = validHistory[validHistory.length - 1];
+      if (last.role === 'user' && (last.content === rawTrimmed || last.content === promptTrimmed)) {
+        validHistory.pop();
+      }
+    }
+
+    // Keep up to last 6 dialogue turns
+    validHistory.slice(-6).forEach(t => messages.push({ role: t.role, content: t.content }));
+  }
+
+  // 3. Current user prompt
+  if (userPrompt && String(userPrompt).trim()) {
+    messages.push({
+      role: 'user',
+      content: String(userPrompt).trim()
+    });
+  } else if (messages.length === 1 && messages[0].role === 'system') {
+    // Fallback user turn if none provided
+    messages.push({
+      role: 'user',
+      content: 'Hello'
+    });
+  }
+
+  return messages;
+}
+
 app.post('/api/chat', async (req, res) => {
-  const { message, context } = req.body || {};
+  const { message, context, messages: rawMessages } = req.body || {};
   const firstName = (context && context.firstName) || 'Friend';
   const pillar = context && context.pillar;
 
@@ -176,19 +260,18 @@ app.post('/api/chat', async (req, res) => {
     return res.json(getFallbackResponse(message, firstName));
   }
 
-  const messages = [
-    { role: 'system', content: SYSTEM_PROMPT.replace('[First Name]', firstName) }
-  ];
-
-  if (context && Array.isArray(context.history)) {
-    context.history.slice(-6).forEach(t => messages.push({ role: t.role, content: t.content }));
-  }
-
-  let userPrompt = message || '';
+  let userPrompt = (message || '').trim();
   if (pillar) {
     userPrompt = `[Context: User is on Pillar: ${pillar}, Step: ${context.step || 2}]\nUser message: ${message}`;
   }
-  messages.push({ role: 'user', content: userPrompt });
+
+  // History source can come from context.history or req.body.messages
+  const historySource = (context && Array.isArray(context.history))
+    ? context.history
+    : (Array.isArray(rawMessages) ? rawMessages : []);
+
+  const systemPrompt = SYSTEM_PROMPT.replace('[First Name]', firstName);
+  const messages = buildOpenAiMessages(systemPrompt, historySource, userPrompt, message);
 
   try {
     const postData = JSON.stringify({
@@ -221,6 +304,7 @@ app.post('/api/chat', async (req, res) => {
       apiRes.on('end', () => {
         if (apiRes.statusCode !== 200) {
           console.warn(`Qwen HTTP ${apiRes.statusCode}: ${body}`);
+          console.warn(`Outgoing messages structure: ${JSON.stringify(messages.map(m => ({ role: m.role, length: (m.content || '').length })))}`);
           return res.json(getFallbackResponse(message, firstName));
         }
         try {
@@ -297,10 +381,21 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.listen(PORT, () => {
-  console.log(`\n=======================================================`);
-  console.log(`  TABY Stress-Relief Companion Server (Express) running!`);
-  console.log(`  URL: http://localhost:${PORT}`);
-  console.log(`  Qwen LLM API configured: ${QWEN_API_KEY ? 'YES' : 'NO (Intelligent fallback active)'}`);
-  console.log(`=======================================================\n`);
-});
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`\n=======================================================`);
+    console.log(`  TABY Stress-Relief Companion Server (Express) running!`);
+    console.log(`  URL: http://localhost:${PORT}`);
+    console.log(`  Qwen LLM API configured: ${QWEN_API_KEY ? 'YES' : 'NO (Intelligent fallback active)'}`);
+    console.log(`=======================================================\n`);
+  });
+}
+
+module.exports = {
+  app,
+  buildOpenAiMessages,
+  normalizeRole,
+  normalizeContent,
+  extractJson,
+  getFallbackResponse
+};
