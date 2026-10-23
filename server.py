@@ -73,8 +73,10 @@ Do not wrap your answer in preamble or commentary outside the JSON."""
 
 
 class ChatMessage(BaseModel):
-    role: str
-    content: str
+    role: Optional[str] = None
+    sender: Optional[str] = None
+    content: Optional[str] = None
+    text: Optional[str] = None
 
 
 class ChatContext(BaseModel):
@@ -260,7 +262,17 @@ def chat_endpoint(req: ChatRequest):
     # Add historical turns if provided
     if req.context and req.context.history:
         for hist_turn in req.context.history[-6:]:
-            messages.append({"role": hist_turn.role, "content": hist_turn.content})
+            role_val = (hist_turn.role or hist_turn.sender or "").lower().strip()
+            if role_val in ["taby", "assistant", "model", "bot"]:
+                r = "assistant"
+            elif role_val == "user":
+                r = "user"
+            else:
+                continue
+            text_val = hist_turn.content or hist_turn.text
+            if not text_val or not str(text_val).strip():
+                continue
+            messages.append({"role": r, "content": str(text_val).strip()})
 
     # Add contextual guidance for specific pillar practice
     user_prompt_content = req.message
