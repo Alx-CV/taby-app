@@ -975,13 +975,13 @@ button, .btn {
 .capacity-circle-bg {
   fill: none;
   stroke: var(--panel);
-  stroke-width: 10;
+  stroke-width: 4;
 }
 
 .capacity-circle-bar {
   fill: none;
   stroke: var(--teal);
-  stroke-width: 10;
+  stroke-width: 4;
   stroke-linecap: round;
   transition: stroke-dashoffset 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
