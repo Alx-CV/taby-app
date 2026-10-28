@@ -143,7 +143,7 @@
     {
       id: 'msg-1',
       sender: 'taby',
-      text: `Welcome back, ${state.profile.firstName || 'friend'}. I'm here to support your nervous system today. How are you feeling in your body right now?`,
+      text: "Welcome back, " + (state.profile.firstName || 'friend') + ". I'm here to support your nervous system today. How are you feeling in your body right now?",
       time: '17:15',
       chips: ["Feeling a bit overwhelmed", "A little tense", "Doing fine"]
     },
