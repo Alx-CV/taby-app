@@ -486,6 +486,12 @@
       var profile = TabyState.getProfile();
       var fName = profile.firstName || 'Alex';
 
+      // NEW: Update the default welcome message to use the real name
+      if (messages.length > 0 && messages[0].text && messages[0].text.includes("Welcome back.")) {
+        messages[0].text = "Welcome back, " + fName + ". I'm here to support your nervous system today. How are you feeling in your body right now?";
+        TabyState.saveChatMain(messages); // Save the updated message so it remembers the name
+      }
+
       // If initial message requested from a pop-up
       if (params.initialMessage) {
         var alreadyExists = messages.some(function (m) { return m.text === params.initialMessage; });
